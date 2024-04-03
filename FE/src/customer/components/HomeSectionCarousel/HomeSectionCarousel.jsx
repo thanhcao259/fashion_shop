@@ -3,9 +3,8 @@ import AliceCarousel from "react-alice-carousel";
 import HomeSectionCard from "../HomeSectionCard/HomeSectionCard";
 import { Button } from "@mui/material";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import { mens_data } from "../../../Data/mens";
 
-const HomeSectionCarousel = () => {
+const HomeSectionCarousel = ({ data }) => {
   const customeResponsive = {
     0: { items: 1 },
     500: { items: 2 },
@@ -15,16 +14,23 @@ const HomeSectionCarousel = () => {
   };
 
   const [activeIndex, setActiveIndex] = useState(0);
+
   const slidePrev = () => {
-    setActiveIndex(activeIndex - 1);
+    if (activeIndex > 0) {
+      setActiveIndex(activeIndex - 1);
+    }
   }
   const slideNext = () => {
-    setActiveIndex(activeIndex + 1);
+    if (activeIndex < data.length - 1) {
+      setActiveIndex(activeIndex + 1);
+    }
   }
   const syncActiveIndex = ({ item }) => {
     setActiveIndex(item)
   }
-  const items = mens_data.slice(0,5).map((item) => <HomeSectionCard product={item}/>);
+  const items = data.slice(0, 10).map((item) => (
+    <HomeSectionCard key={item.id} product={item} />
+  ));
 
   return (
     <div className="relative px-5  lg:px-8">
@@ -32,56 +38,53 @@ const HomeSectionCarousel = () => {
         <AliceCarousel
           items={items}
           disableButtonsControls
-          disableDotsControls
-          // autoPlay
-          // autoPlayInterval={5000}
-          // infinite
           responsive={customeResponsive}
           onSlideChanged={syncActiveIndex}
           activeIndex={activeIndex}
         />
 
-        {activeIndex !== items.length - 3 && <Button
-          variant="contained"
-          className="z-50 bg-white"
-          onClick={slideNext}
-          sx={{
-            position: "absolute",
-            top: "8rem",
-            right: "0rem",
-            transform: "translateX(40%) rotate(90deg)",
-            bgcolor: "white",
-          }}
-          aria-label="next"
-        >
-          <KeyboardArrowLeftIcon
+        {activeIndex !== items.length - 1 &&
+          (<Button onClick={slideNext}
+            variant="contained"
+            className="z-50 bg-white"
             sx={{
-              transform: "rotate(90deg)",
-              color: "black",
+              position: "absolute",
+              top: "8rem",
+              right: "0rem",
+              transform: "translateX(40%) rotate(90deg)",
+              bgcolor: "white",
             }}
-          />
-        </Button>}
+            aria-label="next"
+          >
+            <KeyboardArrowLeftIcon onClick={slideNext}
+              sx={{
+                transform: "rotate(90deg)",
+                color: "black",
+              }}
+            />
+          </Button>)}
 
-        {activeIndex !== 0 && <Button
-          variant="contained"
-          className="z-50 bg-white"
-          onClick={slidePrev}
-          sx={{
-            position: "absolute",
-            top: "8rem",
-            left: "0rem",
-            transform: "translateX(-10%) rotate(90deg)",
-            bgcolor: "white",
-          }}
-          aria-label="previous"
-        >
-          <KeyboardArrowLeftIcon
+        {activeIndex !== 0 &&
+          (<Button onClick={slidePrev}
+            variant="contained"
+            className="z-50 bg-white"
+
             sx={{
-              transform: "rotate(-90deg)",
-              color: "black",
+              position: "absolute",
+              top: "8rem",
+              left: "0rem",
+              transform: "translateX(-10%) rotate(90deg)",
+              bgcolor: "white",
             }}
-          />
-        </Button>}
+            aria-label="previous"
+          >
+            <KeyboardArrowLeftIcon onClick={slidePrev}
+              sx={{
+                transform: "rotate(-90deg)",
+                color: "black",
+              }}
+            />
+          </Button>)}
       </div>
     </div>
   );
