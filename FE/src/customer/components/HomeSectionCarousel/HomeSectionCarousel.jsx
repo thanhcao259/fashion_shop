@@ -8,9 +8,10 @@ const HomeSectionCarousel = ({ data }) => {
   const customeResponsive = {
     0: { items: 1 },
     500: { items: 2 },
-    720: { items: 3 },
-    1024: { items: 4.2 },
-    1350: { items: 5 },
+    850: { items: 3 },
+    1100: { items: 3.5 },
+    1230: {items: 4},
+    1350: { items: 4.3 },
   };
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -51,7 +52,7 @@ const HomeSectionCarousel = ({ data }) => {
               position: "absolute",
               top: "8rem",
               right: "0rem",
-              transform: "translateX(40%) rotate(90deg)",
+              transform: "translateX(40%) translateY(50%) rotate(90deg)",
               bgcolor: "white",
             }}
             aria-label="next"
@@ -73,7 +74,7 @@ const HomeSectionCarousel = ({ data }) => {
               position: "absolute",
               top: "8rem",
               left: "0rem",
-              transform: "translateX(-10%) rotate(90deg)",
+              transform: "translateX(-30%) translateY(50%) rotate(90deg)",
               bgcolor: "white",
             }}
             aria-label="previous"

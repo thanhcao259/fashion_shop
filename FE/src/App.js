@@ -3,6 +3,7 @@ import './App.css';
 import Navigator
   from './customer/components/Navigator/Navigator';
 import Home from './customer/pages/Home';
+import Footer from './customer/components/Footer/Footer';
 function App() {
   return (
     <div className="">
@@ -15,6 +16,7 @@ function App() {
           Hello world!
         </h1>
       </header> */}
+      <Footer/>
     </div>
   );
 }
