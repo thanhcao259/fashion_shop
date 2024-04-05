@@ -2,7 +2,7 @@ import React from 'react'
 import './Product.css'
 const ProductCard = () => {
   return (
-    <div className='productCard  w-[15rem] m-3 transition-all cursor-pointer'>
+    <div className='productCard  w-[14rem] m-3 transition-all cursor-pointer'>
         <div >
             <img className='h-full w-full object-cover '
             src="https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/469361/item/vngoods_57_469361.jpg?width=320"
